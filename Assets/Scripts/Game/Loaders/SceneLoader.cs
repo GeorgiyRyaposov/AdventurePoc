@@ -11,13 +11,11 @@ namespace Game.Loaders
     public class SceneLoader
     {
         private LocationsHolder locationsHolder;
-        private List<ILocationLoadedListener> locationLoadedListeners;
 
         [Inject]
-        private void Inject(LocationsHolder locationsHolder, List<ILocationLoadedListener> locationLoadedListeners)
+        private void Inject(LocationsHolder locationsHolder)
         {
             this.locationsHolder = locationsHolder;
-            this.locationLoadedListeners = locationLoadedListeners;
         }
 
         public async Task Load(Id locationId)
@@ -42,11 +40,6 @@ namespace Game.Loaders
             while (!IsAllOperationsDone(asyncOperations))
             {
                 await Task.Yield();
-            }
-
-            foreach (var locationLoadedListener in locationLoadedListeners)
-            {
-                locationLoadedListener.OnLocationLoaded();
             }
         }
 
