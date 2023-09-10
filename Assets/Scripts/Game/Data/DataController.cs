@@ -16,7 +16,7 @@ namespace Game.Data
         private SignalBus signalBus;
         
         [Inject]
-        public void Inject(SignalBus signalBus)
+        public void Construct(SignalBus signalBus)
         {
             this.signalBus = signalBus;
         }

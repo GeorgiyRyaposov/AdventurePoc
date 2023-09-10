@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b361e4566a7471e830c7ab4847f2f63, type: 3}
   m_Name: Bush template
   m_EditorClassIdentifier: 
+  id:
+    value: ff24bb1b-62ae-4a50-9700-17dd9e425841
   viewsTemplates:
   - {fileID: 11400000, guid: b3b630d37fa4c6c4dbf54c0764bf8e6a, type: 2}
   - {fileID: 11400000, guid: c68540db3d4dc474fa81fec46c12200b, type: 2}

@@ -31,6 +31,7 @@ namespace Game.Data.Scenes
             if (id.IsZero)
             {
                 id = Id.Create();
+                UnityEditor.EditorUtility.SetDirty(this);
             }
         }
         
@@ -56,6 +57,8 @@ namespace Game.Data.Scenes
 
                     CollectGameObjects(data);
                     UpdateSceneBounds(data);
+                    
+                    UnityEditor.EditorUtility.SetDirty(target);
                 }
 
                 DrawDefaultInspector();

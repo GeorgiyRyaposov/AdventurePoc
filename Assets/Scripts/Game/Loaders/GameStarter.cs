@@ -1,15 +1,15 @@
 ﻿using Game.Data;
 using Game.Data.Scenes;
-using UnityEngine;
 using Zenject;
 
 namespace Game.Loaders
 {
-    public class GameStarter : MonoBehaviour
+    public class GameStarter
     {
         private LocationsHolder locationsHolder;
         private IGameModelHolder gameModelHolder;
         private SceneTransitionController sceneTransitionController;
+        public bool HasSavedGame;
 
         [Inject]
         private void Inject(IGameModelHolder gameModelHolder,
@@ -53,6 +53,11 @@ namespace Game.Loaders
             }
 
             return gameModel;
+        }
+
+        public void LoadGame()
+        {
+            
         }
     }
 }

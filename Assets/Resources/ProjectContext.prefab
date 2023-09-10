@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 3526647306509464386}
+  - {fileID: -7003470898696671766}
   _installerPrefabs:
   - {fileID: 8657592167119864047, guid: f48aa88ffeff5e84d91bd1672c945f1d, type: 3}
   _parentNewObjectsUnderContext: 1
@@ -75,9 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d15a4b88fc43818c11d7461b2b4964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preloader: {fileID: 0}
   locationsHolder: {fileID: 11400000, guid: 712ed331bed1d53489cb5f5d0a9b8aaa, type: 2}
   templates: {fileID: 11400000, guid: e1f0194d4c5731b42b58e3edc51a3123, type: 2}
+  technicalData: {fileID: 11400000, guid: ec1b89c1f4bf26248aab73f26ed322c7, type: 2}
 --- !u!114 &-7003470898696671766
 MonoBehaviour:
   m_ObjectHideFlags: 0

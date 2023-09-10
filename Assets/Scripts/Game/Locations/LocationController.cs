@@ -17,17 +17,19 @@ namespace Game.Locations
         private Bounds currentLocationBounds;
         
         [Inject]
-        private void Inject(IDataController dataController, LocationsHolder locationsHolder,
+        private void Construct(IDataController dataController, LocationsHolder locationsHolder,
             SignalBus signalBus)
         {
             this.dataController = dataController;
             this.locationsHolder = locationsHolder;
             this.signalBus = signalBus;
+            
+            signalBus.Subscribe<LocationChanged>(OnLocationChanged);
         }
 
         public void Initialize()
         {
-            signalBus.Subscribe<LocationChanged>(OnLocationChanged);
+            //signalBus.Subscribe<LocationChanged>(OnLocationChanged);
         }
 
         public void Dispose()

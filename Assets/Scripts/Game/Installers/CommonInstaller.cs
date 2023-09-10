@@ -12,32 +12,32 @@ namespace Game.Installers
     public class CommonInstaller : MonoInstaller
     {
         [SerializeField]
-        private PreloaderController preloader;
-        
-        [SerializeField]
         private LocationsHolder locationsHolder;
         
         [SerializeField]
         private GameObjectsTemplates templates;
         
+        [SerializeField]
+        private TechnicalData technicalData;
+        
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<DataController>().AsSingle();
-            Container.BindInterfacesTo<GameObjectsPool>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DataController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameObjectsPool>().AsSingle();
             
-            Container.BindInterfacesTo<GameObjectsController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameObjectsController>().AsSingle();
             
-            Container.BindInterfacesTo<GameStarter>().AsSingle();
-            Container.BindInterfacesTo<SceneTransitionController>().AsSingle();
-            Container.BindInterfacesTo<SceneLoader>().AsSingle();
-            Container.BindInterfacesTo<SceneUnloader>().AsSingle();
-            Container.BindInterfacesTo<LocationController>().AsSingle();
-            Container.BindInterfacesTo<LocationStarter>().AsSingle();
-            
-            Container.BindInterfacesTo<PreloaderController>().FromComponentInNewPrefab(preloader).AsSingle();
+            Container.Bind<GameStarter>().AsSingle();
+            Container.Bind<SceneTransitionController>().AsSingle();
+            Container.Bind<SceneLoader>().AsSingle();
+            Container.Bind<SceneUnloader>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LocationController>().AsSingle();
+            Container.Bind<LocationStarter>().AsSingle();
+            Container.Bind<PreloaderController>().AsSingle();
             
             Container.Bind<LocationsHolder>().FromInstance(locationsHolder).AsSingle();
             Container.Bind<GameObjectsTemplates>().FromInstance(templates).AsSingle();
+            Container.Bind<TechnicalData>().FromInstance(technicalData).AsSingle();
         }
     }
 }

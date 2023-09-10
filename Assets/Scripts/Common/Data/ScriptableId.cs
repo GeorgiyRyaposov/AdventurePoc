@@ -9,12 +9,15 @@ namespace Common.Data
         
         public Id Value => value;
 
+#if UNITY_EDITOR
         private void OnValidate()
         {
             if (value.IsZero)
             {
                 value = Id.Create();
+                UnityEditor.EditorUtility.SetDirty(this);
             }
         }
+#endif
     }
 }

@@ -1,18 +1,30 @@
 ﻿using System.Collections.Generic;
 using Common.Data;
 using Common.GameObjects;
+using Game.Loaders;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Game.GameObjectsViews
 {
-    public class GameObjectsPool : IInitializable
+    public class GameObjectsPool : IInitializable, ICleanUpOnLocationUnload
     {
         private GameObjectsTemplates templates;
+        private TechnicalData technicalData;
 
         private readonly Dictionary<Id, GameObjectTemplate> templatesMap = new();
         private readonly Dictionary<Id, Stack<GameObjectView>> pool = new();
         private readonly HashSet<GameObjectView> used = new();
+
+        private Transform poolRoot;
+
+        [Inject]
+        private void Construct(GameObjectsTemplates templates, TechnicalData technicalData)
+        {
+            this.templates = templates;
+            this.technicalData = technicalData;
+        }
 
         public void Initialize()
         {
@@ -21,6 +33,28 @@ namespace Game.GameObjectsViews
                 var template = templates.Values[i];
                 templatesMap[template.Id] = template;
             }
+            
+            CreatePoolRoot();
+        }
+        
+        public void OnLocationLoaded()
+        {
+            CreatePoolRoot();
+        }
+
+        private void CreatePoolRoot()
+        {
+            if (poolRoot != null)
+            {
+                return;
+            }
+
+            var scene = SceneManager.CreateScene(technicalData.ObjectsPoolSceneName);
+
+            var gameObject = new GameObject("Pool");
+            SceneManager.MoveGameObjectToScene(gameObject, scene);
+
+            poolRoot = gameObject.transform;
         }
 
         public GameObjectView Get(Id templateId)
@@ -54,7 +88,7 @@ namespace Game.GameObjectsViews
             if (templatesMap.TryGetValue(templateId, out var template))
             {
                 var prefab = template.ViewsTemplates[0].Prefab;
-                var gameObjectView = GameObject.Instantiate(prefab);
+                var gameObjectView = GameObject.Instantiate(prefab, poolRoot);
                 return gameObjectView;
             }
 
@@ -78,11 +112,14 @@ namespace Game.GameObjectsViews
             stack.Push(gameObjectView);
         }
 
-        public void ClearAll()
+        private void ClearAll()
         {
             foreach (var gameObjectView in used)
             {
-                GameObject.Destroy(gameObjectView.gameObject);
+                if (gameObjectView)
+                {
+                    GameObject.Destroy(gameObjectView.gameObject);
+                }
             }
             used.Clear();
 
@@ -91,9 +128,18 @@ namespace Game.GameObjectsViews
                 while (stacks.Count > 0)
                 {
                     var gameObjectView = stacks.Pop();
-                    GameObject.Destroy(gameObjectView.gameObject);
+                    if (gameObjectView)
+                    {
+                        GameObject.Destroy(gameObjectView.gameObject);
+                    }
                 }
             }
+            pool.Clear();
+        }
+
+        public void CleanUp()
+        {
+            ClearAll();
         }
     }
 }

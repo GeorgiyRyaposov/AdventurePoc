@@ -18,12 +18,15 @@ namespace Common.GameObjects
         [SerializeField] private List<ComponentTemplate> componentsTemplates;
         public List<ComponentTemplate> ComponentsTemplates => componentsTemplates;
         
+#if UNITY_EDITOR
         private void OnValidate()
         {
             if (id.IsZero)
             {
                 id = Id.Create();
+                UnityEditor.EditorUtility.SetDirty(this);
             }
         }
+#endif
     }
 }

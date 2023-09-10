@@ -2,12 +2,13 @@
 using System.Linq;
 using Common.Data;
 using Game.Data;
+using Game.Loaders;
 using UnityEngine;
 using Zenject;
 
 namespace Game.GameObjectsViews
 {
-    public class GameObjectsController
+    public class GameObjectsController : ICleanUpOnLocationUnload
     {
         private GameObjectsPool gameObjectsPool;
         private IDataController dataController;
@@ -15,9 +16,10 @@ namespace Game.GameObjectsViews
         private Dictionary<Id, GameObjectView> spawnedViews = new();
         
         [Inject]
-        private void Inject(IDataController dataController)
+        private void Construct(IDataController dataController, GameObjectsPool gameObjectsPool)
         {
             this.dataController = dataController;
+            this.gameObjectsPool = gameObjectsPool;
         }
         
         public GameObjectView CreateGameObjectView(Id instanceId)
@@ -46,6 +48,11 @@ namespace Game.GameObjectsViews
             Debug.LogError($"<color=red>Failed to get template id {instanceId}</color>");
             
             return null;
+        }
+
+        public void CleanUp()
+        {
+            spawnedViews.Clear();
         }
     }
 }

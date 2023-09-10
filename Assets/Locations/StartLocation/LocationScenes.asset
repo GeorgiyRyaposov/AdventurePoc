@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99625a82f7ab4942821dc53d7a36157d, type: 3}
   m_Name: LocationScenes
   m_EditorClassIdentifier: 
+  id:
+    value: d5f798f9-7f95-4aa1-877b-632da30bd608
   scenes:
   - StartLocation
-  locationGameObjects:
-    TransformData: []
-    GameObjectInstances: []
   scenesCenter:
     X: -91.64441
     Y: 106.074066
@@ -25,3 +24,40 @@ MonoBehaviour:
     X: 977.1504
     Y: 350.94812
     Z: 982.8244
+  locationGameObjects:
+    TransformData:
+    - Position:
+        X: 65.28
+        Y: 21.84
+        Z: 38.14
+      Rotation:
+        X: -0
+        Y: -0.7619101
+        Z: -0
+        W: 0.6476828
+      Scale:
+        X: 1
+        Y: 1
+        Z: 1
+    - Position:
+        X: 83.613266
+        Y: 21.55
+        Z: 36.55379
+      Rotation:
+        X: -0
+        Y: -0.7227095
+        Z: -0
+        W: 0.691152
+      Scale:
+        X: 1
+        Y: 1
+        Z: 1
+    GameObjectInstances:
+    - InstanceId:
+        value: 368844a8-b19e-41b6-96f7-251035ec2b51
+      TemplateId:
+        value: ff24bb1b-62ae-4a50-9700-17dd9e425841
+    - InstanceId:
+        value: 00cfec50-67d9-4728-ad93-03b1edb0b10f
+      TemplateId:
+        value: ff24bb1b-62ae-4a50-9700-17dd9e425841

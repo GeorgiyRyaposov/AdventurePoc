@@ -21,10 +21,9 @@ namespace Game.Components.Transforms
             this.dataController = dataController;
         }
 
-        public Vector3 GetPosition(Id gameObjectId)
+        public TransformData GetTransformData(Id gameObjectId)
         {
-            var data = dataController.GetTransform(gameObjectId);
-            return data.Position;
+            return dataController.GetTransform(gameObjectId);
         }
     }
 }

@@ -2,7 +2,6 @@
 using Common.Components;
 using Common.Data;
 using Game.Components.Transforms;
-using Game.Data.Scenes;
 
 namespace Game.Data
 {
