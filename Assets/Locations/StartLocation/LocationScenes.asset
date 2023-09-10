@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99625a82f7ab4942821dc53d7a36157d, type: 3}
+  m_Name: LocationScenes
+  m_EditorClassIdentifier: 
+  scenes:
+  - StartLocation
+  locationGameObjects:
+    TransformData: []
+    GameObjectInstances: []
+  scenesCenter:
+    X: -91.64441
+    Y: 106.074066
+    Z: -35.558685
+  scenesSize:
+    X: 977.1504
+    Y: 350.94812
+    Z: 982.8244

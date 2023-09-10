@@ -6,7 +6,6 @@ namespace Common.Data
     public class ScriptableId : ScriptableObject
     {
         [SerializeField, HideInInspector] private Id value;
-        [SerializeField] private string id;
         
         public Id Value => value;
 
@@ -15,7 +14,6 @@ namespace Common.Data
             if (value.IsZero)
             {
                 value = Id.Create();
-                id = value.ToString();
             }
         }
     }

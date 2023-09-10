@@ -5,7 +5,7 @@ namespace Common.Components
 {
     public interface IComponentData
     {
-        Id Id { get; }
+        Id Id { get; set; }
     }
 
     public interface IComponentDataDictionary

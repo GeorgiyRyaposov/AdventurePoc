@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2665933231932295095}
   - component: {fileID: 6964208120747882363}
+  - component: {fileID: 3526647306509464386}
+  - component: {fileID: -7003470898696671766}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -61,3 +63,30 @@ MonoBehaviour:
       _missingHandlerDefaultResponse: 2
       _requireStrictUnsubscribe: 0
       _defaultAsyncTickPriority: 1
+--- !u!114 &3526647306509464386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848061215709774398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d15a4b88fc43818c11d7461b2b4964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preloader: {fileID: 0}
+  locationsHolder: {fileID: 11400000, guid: 712ed331bed1d53489cb5f5d0a9b8aaa, type: 2}
+  templates: {fileID: 11400000, guid: e1f0194d4c5731b42b58e3edc51a3123, type: 2}
+--- !u!114 &-7003470898696671766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848061215709774398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38ddfbe0f5848c4bdddc3b05360c2a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

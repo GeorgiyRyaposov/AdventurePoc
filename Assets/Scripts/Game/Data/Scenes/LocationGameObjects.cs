@@ -12,7 +12,7 @@ namespace Game.Data.Scenes
     }
 
     [System.Serializable]
-    public class GameObjectInstance
+    public struct GameObjectInstance
     {
         public Id InstanceId;
         public Id TemplateId;

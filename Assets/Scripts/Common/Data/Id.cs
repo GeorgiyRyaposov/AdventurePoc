@@ -4,73 +4,66 @@ using UnityEngine;
 namespace Common.Data
 {
     [Serializable]
-    public struct Id : IComparable, IComparable<Guid>, IEquatable<Guid>, IEquatable<Id>
+    public struct Id : IComparable, IComparable<string>, IEquatable<string>, IEquatable<Id>
     {
-        [SerializeField] private Guid value;
-
+        [SerializeField] private string value;
+        
         //[JsonConstructor]
         public Id(string value)
         {
-            if (Guid.TryParse(value, out var guid))
-            {
-                this.value = guid;
-            }
-            else
-            {
-                this.value = Guid.Empty;
-            }
+            this.value = value;
         }
 
         public Id(Guid value)
         {
-            this.value = value;
+            this.value = value.ToString();
         }
 
         public static Id Create()
         {
             Id result;
-            result.value = Guid.NewGuid();
+            result.value = Guid.NewGuid().ToString();
             return result;
         }
 
-        public bool IsZero => value == Guid.Empty;
+        public bool IsZero => string.IsNullOrEmpty(value);
         public static Id GetZero()
         {
             Id result;
-            result.value = Guid.Empty;
+            result.value = string.Empty;
             return result;
         }
 
-        public Guid GetValue()
+        public string GetValue()
         {
             return value;
         }
         
 
         #region interfaces
-        public int CompareTo(object value)
+        public int CompareTo(object other)
         {
-            if (value == null)
+            if (other == null)
             {
                 return 1;
             }
 
-            if (value is Guid guidValue)
+            if (other is Id id)
             {
-                return guidValue.CompareTo(this.value);
+                return string.Compare(id.value, value, StringComparison.Ordinal);
             }
 
             return 0;
         }
 
-        public int CompareTo(Guid other)
+        public int CompareTo(string other)
         {
-            return value.CompareTo(other);
+            return string.Compare(value, other, StringComparison.Ordinal);
         }
 
-        public bool Equals(Guid other)
+        public bool Equals(string other)
         {
-            return value.Equals(other);
+            return string.Equals(value, other, StringComparison.Ordinal);
         }
 
         public bool Equals(Id other)
@@ -90,27 +83,19 @@ namespace Common.Data
 
         public override string ToString()
         {
-            if (IsZero)
-            {
-                return string.Empty;
-            }
-
-            return value.ToString();
+            return value;
         }
 
-        // this is first one '=='
         public static bool operator ==(Id a, Id b)
         {
-            return a.value == b.value;
+            return string.Equals(a.value, b.value, StringComparison.Ordinal);
         }
 
-        // this is second one '!='
         public static bool operator !=(Id a, Id b)
         {
-            return a.value != b.value;
+            return !string.Equals(a.value, b.value, StringComparison.Ordinal);
         }
 
-        public static implicit operator Guid(Id id) => id.value;
         public static implicit operator Id(Guid v) => new Id(v);
         public static implicit operator Id(string v) => new Id(v);
         public static implicit operator string(Id v) => v.value.ToString();

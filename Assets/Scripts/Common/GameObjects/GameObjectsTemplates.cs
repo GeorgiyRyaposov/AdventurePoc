@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common.GameObjects
 {
-    [CreateAssetMenu(fileName = "GameObject template", menuName = "ScriptableObjects/GameObject")]
+    [CreateAssetMenu(fileName = "GameObject templates", menuName = "ScriptableObjects/GameObjectsTemplates")]
     public class GameObjectsTemplates : ScriptableObject
     {
         [SerializeField] private List<GameObjectTemplate> values;

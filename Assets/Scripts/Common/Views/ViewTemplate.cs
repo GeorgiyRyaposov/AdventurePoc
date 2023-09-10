@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using Game.GameObjectsViews;
+using UnityEngine;
 
 namespace Common.Views
 {
     [CreateAssetMenu(fileName = "View template", menuName = "ScriptableObjects/View")]
     public class ViewTemplate : ScriptableObject
     {
-        [SerializeField] private GameObject prefab;
+        [SerializeField] private GameObjectView prefab;
 
-        public GameObject Prefab => prefab;
+        public GameObjectView Prefab => prefab;
     }
 }
