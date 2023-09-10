@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Common.Data;
 
-namespace Common.Data
+namespace Common.Components
 {
     public interface IComponentData
     {

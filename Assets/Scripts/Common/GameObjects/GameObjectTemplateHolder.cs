@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Common.SceneObjects
+namespace Common.GameObjects
 {
     public class GameObjectTemplateHolder : MonoBehaviour
     {

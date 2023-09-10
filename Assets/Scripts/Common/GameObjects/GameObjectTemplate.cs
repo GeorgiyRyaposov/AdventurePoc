@@ -4,7 +4,7 @@ using Common.Data;
 using Common.Views;
 using UnityEngine;
 
-namespace Common.SceneObjects
+namespace Common.GameObjects
 {
     [CreateAssetMenu(fileName = "GameObject template", menuName = "ScriptableObjects/GameObject")]
     public class GameObjectTemplate : ScriptableObject

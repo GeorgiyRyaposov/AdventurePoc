@@ -1,3 +1,4 @@
+using Common.Components;
 using Common.Data;
 
 namespace Game.Data

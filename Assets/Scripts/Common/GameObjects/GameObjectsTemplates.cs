@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Common.SceneObjects
+namespace Common.GameObjects
 {
     [CreateAssetMenu(fileName = "GameObject template", menuName = "ScriptableObjects/GameObject")]
     public class GameObjectsTemplates : ScriptableObject

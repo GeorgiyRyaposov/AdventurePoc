@@ -1,4 +1,5 @@
-﻿using Common.Data;
+﻿using Common.Components;
+using Common.Data;
 using UnityEngine;
 
 namespace Game.Data
