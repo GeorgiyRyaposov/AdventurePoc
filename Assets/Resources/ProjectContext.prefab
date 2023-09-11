@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6964208120747882363}
   - component: {fileID: 3526647306509464386}
   - component: {fileID: -7003470898696671766}
+  - component: {fileID: 6999436127205266284}
+  - component: {fileID: 8361121382287634495}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -50,6 +52,8 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 3526647306509464386}
   - {fileID: -7003470898696671766}
+  - {fileID: 6999436127205266284}
+  - {fileID: 8361121382287634495}
   _installerPrefabs:
   - {fileID: 8657592167119864047, guid: f48aa88ffeff5e84d91bd1672c945f1d, type: 3}
   _parentNewObjectsUnderContext: 1
@@ -92,3 +96,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b38ddfbe0f5848c4bdddc3b05360c2a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6999436127205266284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848061215709774398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1199467e9747b4804686e9f970f2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8361121382287634495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848061215709774398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bfec515fad54891b010737f42ef587d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFollowCameraController: {fileID: -7427719731664369432, guid: a1a802ecaf6775746bb2a929fb554ad8,
+    type: 3}
+  thirdPersonController: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
+    type: 3}

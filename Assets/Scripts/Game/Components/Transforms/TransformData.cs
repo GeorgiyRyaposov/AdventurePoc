@@ -1,6 +1,7 @@
 ﻿using System;
 using Common.Components;
 using Common.Data;
+using UnityEngine;
 
 namespace Game.Components.Transforms
 {
@@ -9,7 +10,7 @@ namespace Game.Components.Transforms
     {
         public Id Id { get => id; set => id = value; }
 
-        private Id id;
+        [SerializeField] private Id id;
         
         public SerializableVector3 Position;
         public SerializableQuaternion Rotation;

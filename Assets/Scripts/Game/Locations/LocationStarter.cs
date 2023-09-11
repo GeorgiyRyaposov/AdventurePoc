@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Game.Characters.Player;
 using Game.Components.Transforms;
 using Game.GameObjectsViews;
 using UnityEngine;
@@ -11,14 +12,16 @@ namespace Game.Locations
         private GameObjectsController gameObjectsController;
         private TransformsController transformsController;
         private LocationController locationController;
+        private PlayerCharacterController playerCharacterController;
         
         [Inject]
         private void Inject(GameObjectsController gameObjectsController, TransformsController transformsController,
-            LocationController locationController)
+            LocationController locationController, PlayerCharacterController playerCharacterController)
         {
             this.gameObjectsController = gameObjectsController;
             this.transformsController = transformsController;
             this.locationController = locationController;
+            this.playerCharacterController = playerCharacterController;
         }
         
         public async Task PrepareLocation()
@@ -47,6 +50,8 @@ namespace Game.Locations
                     await Task.Yield();
                 }
             }
+
+            playerCharacterController.SpawnPlayer();
 
             Debug.Log($"<color=green>Spawned items: {spawnedCount}</color>");
         }
