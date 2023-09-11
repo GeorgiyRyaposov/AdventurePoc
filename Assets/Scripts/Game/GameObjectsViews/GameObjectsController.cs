@@ -52,6 +52,10 @@ namespace Game.GameObjectsViews
 
         public void CleanUp()
         {
+            foreach (var view in spawnedViews.Values)
+            {
+                gameObjectsPool.Release(view);
+            }
             spawnedViews.Clear();
         }
     }

@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Game.GameObjectsViews
 {
-    public class GameObjectsPool : IInitializable, ICleanUpOnLocationUnload
+    public class GameObjectsPool : IInitializable
     {
         private GameObjectsTemplates templates;
         private TechnicalData technicalData;
@@ -87,7 +87,8 @@ namespace Game.GameObjectsViews
 
             if (templatesMap.TryGetValue(templateId, out var template))
             {
-                var prefab = template.ViewsTemplates[0].Prefab;
+                var random = Random.Range(0, template.ViewsTemplates.Count);
+                var prefab = template.ViewsTemplates[random].Prefab;
                 var gameObjectView = GameObject.Instantiate(prefab, poolRoot);
                 return gameObjectView;
             }
@@ -135,11 +136,6 @@ namespace Game.GameObjectsViews
                 }
             }
             pool.Clear();
-        }
-
-        public void CleanUp()
-        {
-            ClearAll();
         }
     }
 }
