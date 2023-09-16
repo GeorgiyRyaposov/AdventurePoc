@@ -10,10 +10,12 @@ namespace Game.GameObjectsViews
 {
     public class GameObjectsController : ICleanUpOnLocationUnload
     {
+        public int SpawnedViewsCount => spawnedViews.Count;
+        
         private GameObjectsPool gameObjectsPool;
         private IDataController dataController;
         
-        private Dictionary<Id, GameObjectView> spawnedViews = new();
+        private readonly List<GameObjectView> spawnedViews = new();
         
         [Inject]
         private void Construct(IDataController dataController, GameObjectsPool gameObjectsPool)
@@ -26,8 +28,9 @@ namespace Game.GameObjectsViews
         {
             var templateId = GetTemplateId(instanceId);
             var view = gameObjectsPool.Get(templateId);
+            view.InstanceId = instanceId;
 
-            spawnedViews[instanceId] = view;
+            spawnedViews.Add(view);
             
             return view;
         }
@@ -35,6 +38,11 @@ namespace Game.GameObjectsViews
         public List<Id> GetGameObjects()
         {
             return dataController.GetGameObjectsToTemplatesMap().Keys.ToList();
+        }
+        
+        public void CollectSpawnedViews(List<GameObjectView> views)
+        {
+            views.AddRange(spawnedViews);
         }
 
         private Id GetTemplateId(Id instanceId)
@@ -52,7 +60,7 @@ namespace Game.GameObjectsViews
 
         public void CleanUp()
         {
-            foreach (var view in spawnedViews.Values)
+            foreach (var view in spawnedViews)
             {
                 gameObjectsPool.Release(view);
             }

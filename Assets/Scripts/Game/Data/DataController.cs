@@ -62,5 +62,9 @@ namespace Game.Data
         {
             return model.Transforms[objectId];
         }
+        public void SetTransform(Id objectId, TransformData data)
+        {
+            model.Transforms[objectId] = data;
+        }
     }
 }

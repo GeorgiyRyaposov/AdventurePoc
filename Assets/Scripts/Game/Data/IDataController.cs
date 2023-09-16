@@ -14,5 +14,6 @@ namespace Game.Data
 
         Dictionary<Id, Id> GetGameObjectsToTemplatesMap();
         TransformData GetTransform(Id objectId);
+        void SetTransform(Id objectId, TransformData data);
     }
 }
