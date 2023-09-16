@@ -16,6 +16,10 @@ MonoBehaviour:
     value: d5f798f9-7f95-4aa1-877b-632da30bd608
   scenes:
   - StartLocation
+  playerSpawnPosition:
+    X: 77.982
+    Y: 22.218
+    Z: 47.1
   scenesCenter:
     X: -91.64441
     Y: 106.074066
@@ -25,43 +29,5 @@ MonoBehaviour:
     Y: 350.94812
     Z: 982.8244
   locationGameObjects:
-    TransformData:
-    - id:
-        value: 0ea98b57-522a-481b-a633-fbf034d04d6d
-      Position:
-        X: 65.28
-        Y: 21.84
-        Z: 38.14
-      Rotation:
-        X: -0
-        Y: -0.7619101
-        Z: -0
-        W: 0.6476828
-      Scale:
-        X: 1
-        Y: 1
-        Z: 1
-    - id:
-        value: 79094ba4-d760-4329-8bf1-93e19f4ac4db
-      Position:
-        X: 83.613266
-        Y: 21.55
-        Z: 36.55379
-      Rotation:
-        X: -0
-        Y: -0.7227095
-        Z: -0
-        W: 0.691152
-      Scale:
-        X: 1
-        Y: 1
-        Z: 1
-    GameObjectInstances:
-    - InstanceId:
-        value: 0ea98b57-522a-481b-a633-fbf034d04d6d
-      TemplateId:
-        value: ff24bb1b-62ae-4a50-9700-17dd9e425841
-    - InstanceId:
-        value: 79094ba4-d760-4329-8bf1-93e19f4ac4db
-      TemplateId:
-        value: ff24bb1b-62ae-4a50-9700-17dd9e425841
+    TransformData: []
+    GameObjectInstances: []

@@ -1,4 +1,5 @@
 ﻿using StarterAssets;
+using UnityEngine;
 
 namespace Game.Characters.Player
 {
@@ -15,9 +16,10 @@ namespace Game.Characters.Player
             this.playerFollowCameraControllerFactory = playerFollowCameraControllerFactory;
         }
         
-        public void SpawnPlayer()
+        public void SpawnPlayer(Vector3 spawnPoint)
         {
             var thirdPersonController = thirdPersonControllerFactory.Create();
+            thirdPersonController.transform.position = spawnPoint;
             var playerFollowCameraController = playerFollowCameraControllerFactory.Create();
 
             playerFollowCameraController.SetFollowTarget(thirdPersonController.CinemachineCameraTarget);

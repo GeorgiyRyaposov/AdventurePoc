@@ -47,5 +47,10 @@ namespace Game.Locations
         {
             return currentLocationBounds.Contains(position);
         }
+
+        public Vector3 GetSpawnPoint()
+        {
+            return currentLocation.PlayerSpawnPosition;
+        }
     }
 }

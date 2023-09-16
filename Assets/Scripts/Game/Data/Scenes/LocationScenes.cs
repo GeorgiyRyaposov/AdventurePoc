@@ -16,6 +16,10 @@ namespace Game.Data.Scenes
         public List<string> Scenes => scenes;
         
         [SerializeField] 
+        private SerializableVector3 playerSpawnPosition;
+        public SerializableVector3 PlayerSpawnPosition => playerSpawnPosition;
+        
+        [SerializeField] 
         private SerializableVector3 scenesCenter;
         [SerializeField] 
         private SerializableVector3 scenesSize;
@@ -57,11 +61,21 @@ namespace Game.Data.Scenes
 
                     CollectGameObjects(data);
                     UpdateSceneBounds(data);
+                    GetSpawnPoint(data);
                     
                     UnityEditor.EditorUtility.SetDirty(target);
                 }
 
                 DrawDefaultInspector();
+            }
+
+            private void GetSpawnPoint(LocationScenes data)
+            {
+                var respawn = GameObject.FindWithTag("Respawn");
+                if (respawn != null)
+                {
+                    data.playerSpawnPosition = respawn.transform.position;
+                }
             }
 
             private void UpdateSceneBounds(LocationScenes data)
