@@ -1,45 +1,32 @@
-﻿using System;
-using Game.Data;
+﻿using Common.ServiceLocator;
 using Game.Data.Scenes;
 using Game.Signals;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Locations
 {
-    public class LocationController : IInitializable, IDisposable
+    [CreateAssetMenu(fileName = "LocationController", menuName = "Services/LocationController")]
+    public class LocationController : ScriptableObject, IInitializableService
     {
-        private IDataController dataController;
-        private LocationsHolder locationsHolder;
-        private SignalBus signalBus;
+        [SerializeField] private LocationsHolder locationsHolder;
         
         private LocationScenes currentLocation;
         private Bounds currentLocationBounds;
         
-        [Inject]
-        private void Construct(IDataController dataController, LocationsHolder locationsHolder,
-            SignalBus signalBus)
-        {
-            this.dataController = dataController;
-            this.locationsHolder = locationsHolder;
-            this.signalBus = signalBus;
-            
-            signalBus.Subscribe<LocationChanged>(OnLocationChanged);
-        }
-
         public void Initialize()
         {
-            //signalBus.Subscribe<LocationChanged>(OnLocationChanged);
+            ServicesMediator.Signals.Subscribe<LocationChanged>(OnLocationChanged);
         }
 
         public void Dispose()
         {
-            signalBus?.Unsubscribe<LocationChanged>(OnLocationChanged);
+            ServicesMediator.Signals?.Unsubscribe<LocationChanged>(OnLocationChanged);
         }
         
         private void OnLocationChanged()
         {
-            currentLocation = locationsHolder.Values.Find(x => x.Id == dataController.GetCurrentLocation());
+            var currentLocationId = ServicesMediator.DataController.GetCurrentLocation();
+            currentLocation = locationsHolder.Values.Find(x => x.Id == currentLocationId);
             currentLocationBounds = currentLocation.SceneBounds;
         }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Common.Components;
 using Common.Data;
+using Common.ServiceLocator;
 using Game.Data;
 using Game.GameObjectsViews;
 using UnityEngine;
@@ -8,7 +9,8 @@ using Zenject;
 
 namespace Game.Components.Transforms
 {
-    public class TransformsController : MonoBehaviour, IComponentsController, ITickable
+    [CreateAssetMenu(fileName = "TransformsController", menuName = "Services/TransformsController")]
+    public class TransformsController : ScriptableObject, IComponentsController, ITickable, IInitializableService
     {
         [SerializeField]
         private ScriptableId controllerId;
@@ -20,11 +22,17 @@ namespace Game.Components.Transforms
 
         private readonly List<GameObjectView> spawnedViews = new();
 
-        [Inject]
-        private void Inject(IDataController dataController, GameObjectsController gameObjectsController)
+        public void Initialize()
         {
-            this.dataController = dataController;
-            this.gameObjectsController = gameObjectsController;
+            dataController = ServicesMediator.DataController;
+            gameObjectsController = ServicesMediator.GameObjectsController;
+            
+            ServicesMediator.TickableService.Add(this);
+        }
+
+        public void Dispose()
+        {
+            ServicesMediator.TickableService?.Remove(this);
         }
 
         public TransformData GetTransformData(Id instanceId)

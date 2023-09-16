@@ -1,17 +1,10 @@
-﻿using Game.Loaders;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Gui.MainMenu
 {
     public class MainMenuPresenter
     {
         private MainMenuView view;
-        private readonly GameStarter gameStarter;
-
-        public MainMenuPresenter(GameStarter gameStarter)
-        {
-            this.gameStarter = gameStarter;
-        }
         
         public void Attach(MainMenuView mainMenuView)
         {
@@ -21,17 +14,17 @@ namespace Game.Gui.MainMenu
             view.LoadGame.onClick.AddListener(LoadGameClicked);
             view.Exit.onClick.AddListener(ExitClicked);
             
-            view.LoadGame.interactable = gameStarter.HasSavedGame;
+            view.LoadGame.interactable = ServicesMediator.GameStarter.HasSavedGame;
         }
 
         private void NewGameClicked()
         {
-            gameStarter.StartNewGame();
+            ServicesMediator.GameStarter.StartNewGame();
         }
         
         private void LoadGameClicked()
         {
-            gameStarter.LoadGame();
+            ServicesMediator.GameStarter.LoadGame();
         }
 
         private void ExitClicked()

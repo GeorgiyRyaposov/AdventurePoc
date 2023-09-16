@@ -1,26 +1,19 @@
-﻿using StarterAssets;
+﻿using Common.ServiceLocator;
+using StarterAssets;
 using UnityEngine;
 
 namespace Game.Characters.Player
 {
-    public class PlayerCharacterController
+    [CreateAssetMenu(fileName = "PlayerCharacterController", menuName = "Services/PlayerCharacterController")]
+    public class PlayerCharacterController : ScriptableObject, IService
     {
-        private readonly ThirdPersonController.Factory thirdPersonControllerFactory;
-        private readonly PlayerFollowCameraController.Factory playerFollowCameraControllerFactory;
+        [SerializeField] ThirdPersonController thirdPersonControllerPrefab;
+        [SerializeField] PlayerFollowCameraController playerFollowCameraControllerPrefab;
 
-
-        public PlayerCharacterController(ThirdPersonController.Factory thirdPersonControllerFactory,
-            PlayerFollowCameraController.Factory playerFollowCameraControllerFactory)
-        {
-            this.thirdPersonControllerFactory = thirdPersonControllerFactory;
-            this.playerFollowCameraControllerFactory = playerFollowCameraControllerFactory;
-        }
-        
         public void SpawnPlayer(Vector3 spawnPoint)
         {
-            var thirdPersonController = thirdPersonControllerFactory.Create();
-            thirdPersonController.transform.position = spawnPoint;
-            var playerFollowCameraController = playerFollowCameraControllerFactory.Create();
+            var thirdPersonController = Instantiate(thirdPersonControllerPrefab, spawnPoint, Quaternion.identity);
+            var playerFollowCameraController = Instantiate(playerFollowCameraControllerPrefab);
 
             playerFollowCameraController.SetFollowTarget(thirdPersonController.CinemachineCameraTarget);
         }

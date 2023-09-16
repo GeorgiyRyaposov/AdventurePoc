@@ -1,22 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.Data;
+using Common.ServiceLocator;
 using Game.Data.Scenes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Zenject;
 
 namespace Game.Loaders
 {
-    public class SceneLoader
+    [CreateAssetMenu(fileName = "SceneLoader", menuName = "Services/SceneLoader")]
+    public class SceneLoader : ScriptableObject, IService
     {
-        private LocationsHolder locationsHolder;
-
-        [Inject]
-        private void Inject(LocationsHolder locationsHolder)
-        {
-            this.locationsHolder = locationsHolder;
-        }
+        [SerializeField] private LocationsHolder locationsHolder;
 
         public async Task Load(Id locationId)
         {

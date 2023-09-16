@@ -3,5 +3,6 @@
     public interface IGameModelHolder
     {
         void SetModel(GameModel model);
+        bool HasModel();
     }
 }

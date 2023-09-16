@@ -1,31 +1,17 @@
 ﻿using System.Threading.Tasks;
-using Game.Characters.Player;
-using Game.Components.Transforms;
-using Game.GameObjectsViews;
+using Common.ServiceLocator;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Locations
 {
-    public class LocationStarter
+    public class LocationStarter : IService
     {
-        private GameObjectsController gameObjectsController;
-        private TransformsController transformsController;
-        private LocationController locationController;
-        private PlayerCharacterController playerCharacterController;
-        
-        [Inject]
-        private void Inject(GameObjectsController gameObjectsController, TransformsController transformsController,
-            LocationController locationController, PlayerCharacterController playerCharacterController)
-        {
-            this.gameObjectsController = gameObjectsController;
-            this.transformsController = transformsController;
-            this.locationController = locationController;
-            this.playerCharacterController = playerCharacterController;
-        }
-        
         public async Task PrepareLocation()
         {
+            var gameObjectsController = ServicesMediator.GameObjectsController;
+            var transformsController = ServicesMediator.TransformsController;
+            var locationController = ServicesMediator.LocationController;
+            
             var gameObjects = gameObjectsController.GetGameObjects();
             var spawnedCount = 0;
             
@@ -52,7 +38,7 @@ namespace Game.Locations
             }
 
             var spawnPoint = locationController.GetSpawnPoint();
-            playerCharacterController.SpawnPlayer(spawnPoint);
+            ServicesMediator.PlayerCharacterController.SpawnPlayer(spawnPoint);
 
             Debug.Log($"<color=green>Spawned items: {spawnedCount}</color>");
         }

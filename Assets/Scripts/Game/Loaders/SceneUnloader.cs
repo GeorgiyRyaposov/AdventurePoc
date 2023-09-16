@@ -1,24 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.ServiceLocator;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Game.Loaders
 {
-    public class SceneUnloader
+    [CreateAssetMenu(fileName = "SceneUnloader", menuName = "Services/SceneUnloader")]
+    public class SceneUnloader : ScriptableObject, IService
     {
-        private readonly List<ICleanUpOnLocationUnload> onUnloadCleaners;
-        private readonly TechnicalData technicalData;
-
-        public SceneUnloader(TechnicalData technicalData, List<ICleanUpOnLocationUnload> onUnloadCleaners)
-        {
-            this.technicalData = technicalData;
-            this.onUnloadCleaners = onUnloadCleaners;
-        }
+        [SerializeField] private TechnicalData technicalData;
+        private readonly List<ICleanUpOnLocationUnload> onUnloadCleaners = new();
         
         public async Task Unload()
         {
+            onUnloadCleaners.Clear();
+            Global.ServiceLocator.CollectAll(onUnloadCleaners);
             foreach (var cleanUpOnLocationUnload in onUnloadCleaners)
             {
                 cleanUpOnLocationUnload.CleanUp();

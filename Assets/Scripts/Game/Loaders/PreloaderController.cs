@@ -1,11 +1,14 @@
 ﻿using System.Threading.Tasks;
+using Common.ServiceLocator;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Game.Loaders
 {
-    public class PreloaderController
+    [CreateAssetMenu(fileName = "PreloaderController", menuName = "Services/PreloaderController")]
+    public class PreloaderController : ScriptableObject, IService
     {
-        private readonly TechnicalData technicalData;
+        [SerializeField] private TechnicalData technicalData;
         
         public PreloaderController(TechnicalData technicalData)
         {

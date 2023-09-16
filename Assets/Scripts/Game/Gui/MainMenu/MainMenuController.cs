@@ -1,21 +1,23 @@
-﻿using Zenject;
+﻿using Common.ServiceLocator;
+using UnityEngine;
 
 namespace Game.Gui.MainMenu
 {
-    public class MainMenuController : IInitializable
+    public class MainMenuController : MonoBehaviour
     {
-        private readonly MainMenuPresenter mainMenuPresenter;
-        private readonly MainMenuView mainMenuView;
-
-        public MainMenuController(MainMenuPresenter mainMenuPresenter, MainMenuView mainMenuView)
-        {
-            this.mainMenuPresenter = mainMenuPresenter;
-            this.mainMenuView = mainMenuView;
-        }
+        [SerializeField] private MainMenuView mainMenuView;
         
-        public void Initialize()
+        private MainMenuPresenter mainMenuPresenter;
+        
+        public void Start()
         {
+            mainMenuPresenter = new MainMenuPresenter();
             mainMenuPresenter.Attach(mainMenuView);
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

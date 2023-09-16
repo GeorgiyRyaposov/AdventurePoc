@@ -1,27 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.ServiceLocator;
 using Game.Input.DevicesListeners;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
-using Zenject;
 
 namespace Game.Input
 {
-public class InputDevicesManager : IInitializable, IDisposable
+    public class InputDevicesManager : IInitializableService
     {
-        private readonly KeyboardAndMouseInputListener keyboardAndMouseInputListener;
+        private KeyboardAndMouseInputListener keyboardAndMouseInputListener;
         
         private readonly List<InputActions> inputActions = new ();
 
         private bool inputEnabled = true;
 
-        public InputDevicesManager(KeyboardAndMouseInputListener keyboardAndMouseInputListener)
-        {
-            this.keyboardAndMouseInputListener = keyboardAndMouseInputListener;
-        }
-
         public void Initialize()
         {
+            keyboardAndMouseInputListener = new();
+            
             InputSystem.onDeviceChange += OnDeviceChange;
 
             InitializeDeviceListeners();

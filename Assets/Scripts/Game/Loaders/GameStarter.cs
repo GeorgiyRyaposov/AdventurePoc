@@ -1,33 +1,36 @@
-﻿using Game.Data;
+﻿using Common.ServiceLocator;
+using Game.Data;
 using Game.Data.Scenes;
-using Zenject;
+using UnityEngine;
 
 namespace Game.Loaders
 {
-    public class GameStarter
+    [CreateAssetMenu(fileName = "GameStarter", menuName = "Services/GameStarter")]
+    public class GameStarter : ScriptableObject, IInitializableService
     {
-        private LocationsHolder locationsHolder;
-        private IGameModelHolder gameModelHolder;
-        private SceneTransitionController sceneTransitionController;
+        [SerializeField] private LocationsHolder locationsHolder;
         public bool HasSavedGame;
-
-        [Inject]
-        private void Inject(IGameModelHolder gameModelHolder,
-            SceneTransitionController sceneTransitionController,
-            LocationsHolder locationsHolder)
-        {
-            this.gameModelHolder = gameModelHolder;
-            this.locationsHolder = locationsHolder;
-            this.sceneTransitionController = sceneTransitionController;
-        }
         
+        
+        public void Initialize()
+        {
+            //for case when there is no saved game
+            //and game started not from start scene 
+            var gameModelHolder = ServicesMediator.GameModelHolder;
+            if (!gameModelHolder.HasModel())
+            {
+                gameModelHolder.SetModel(CreateNewGameModel());
+            }
+        }
+        public void Dispose()
+        {
+            
+        }
+
         public void StartNewGame()
         {
-            var model = CreateNewGameModel();
-            
-            gameModelHolder.SetModel(model);
-            
-            sceneTransitionController.Load(locationsHolder.StartingLocation.Id);
+            ServicesMediator.GameModelHolder.SetModel(CreateNewGameModel());
+            ServicesMediator.SceneTransitionController.Load(locationsHolder.StartingLocation.Id);
         }
 
         private GameModel CreateNewGameModel()

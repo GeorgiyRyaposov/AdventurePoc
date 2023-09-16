@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Common.Data;
+using Common.ServiceLocator;
 using Game.Data;
 using Game.Loaders;
 using UnityEngine;
-using Zenject;
 
 namespace Game.GameObjectsViews
 {
-    public class GameObjectsController : ICleanUpOnLocationUnload
+    public class GameObjectsController : IInitializableService, ICleanUpOnLocationUnload
     {
         public int SpawnedViewsCount => spawnedViews.Count;
         
@@ -17,12 +17,16 @@ namespace Game.GameObjectsViews
         
         private readonly List<GameObjectView> spawnedViews = new();
         
-        [Inject]
-        private void Construct(IDataController dataController, GameObjectsPool gameObjectsPool)
+        public void Initialize()
         {
-            this.dataController = dataController;
-            this.gameObjectsPool = gameObjectsPool;
+            gameObjectsPool = ServicesMediator.GameObjectsPool;
+            dataController = ServicesMediator.DataController;
         }
+        public void Dispose()
+        {
+            CleanUp();
+        }
+
         
         public GameObjectView CreateGameObjectView(Id instanceId)
         {

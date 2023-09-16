@@ -1,11 +1,11 @@
 ﻿using Common.Data;
+using Common.ServiceLocator;
 using Game.Data;
 using Game.Locations;
-using Zenject;
 
 namespace Game.Loaders
 {
-    public class SceneTransitionController
+    public class SceneTransitionController : IInitializableService
     {
         private IDataController dataController;
         private SceneLoader sceneLoader;
@@ -13,16 +13,18 @@ namespace Game.Loaders
         private LocationStarter locationStarter;
         private PreloaderController preloaderController;
         
-        [Inject]
-        private void Inject(IDataController dataController, SceneLoader sceneLoader,
-            PreloaderController preloaderController, SceneUnloader sceneUnloader,
-            LocationStarter locationStarter)
+        public void Initialize()
         {
-            this.dataController = dataController;
-            this.sceneLoader = sceneLoader;
-            this.sceneUnloader = sceneUnloader;
-            this.preloaderController = preloaderController;
-            this.locationStarter = locationStarter;
+            dataController = ServicesMediator.DataController;
+            sceneLoader = Global.ServiceLocator.Get<SceneLoader>();
+            sceneUnloader = Global.ServiceLocator.Get<SceneUnloader>();
+            preloaderController = Global.ServiceLocator.Get<PreloaderController>();
+            locationStarter = Global.ServiceLocator.Get<LocationStarter>();
+        }
+
+        public void Dispose()
+        {
+            
         }
         
         public async void Load(Id locationId)

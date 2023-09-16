@@ -1,30 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Common.Components;
 using Common.Data;
+using Common.ServiceLocator;
 using Game.Components.Transforms;
 using Game.Signals;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Data
 {
-    public class DataController : IDataController, IGameModelHolder
+    public class DataController : IDataController, IGameModelHolder, IService
     {
         private GameModel model;
-        private SignalBus signalBus;
-        
-        [Inject]
-        public void Construct(SignalBus signalBus)
-        {
-            this.signalBus = signalBus;
-        }
         
         public void SetModel(GameModel model)
         {
             this.model = model;
         }
+        public bool HasModel() => model != null;
 
         public IComponentDataDictionary GetComponentsData(Id controllerId)
         {
@@ -45,7 +37,7 @@ namespace Game.Data
         public void SetCurrentLocation(Id locationId)
         {
             model.CurrentLocation = locationId;
-            signalBus.Fire<LocationChanged>();
+            ServicesMediator.Signals.Fire<LocationChanged>();
         }
 
         public Id GetCurrentLocation()

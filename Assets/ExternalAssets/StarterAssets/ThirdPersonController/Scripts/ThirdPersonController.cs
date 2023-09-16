@@ -136,14 +136,9 @@ namespace StarterAssets
             }
         }
 
-        [Inject]
-        private void Inject(InputEventsHolder inputEvents)
-        {
-            _input = inputEvents;
-        }
-
         private void Start()
         {
+            _input = InputMediator.InputEventsHolder;
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);

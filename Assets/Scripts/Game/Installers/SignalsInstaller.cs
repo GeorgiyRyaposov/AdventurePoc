@@ -1,9 +1,11 @@
 ﻿using Game.Signals;
+using UnityEngine;
 using Zenject;
 
 namespace Game.Installers
 {
-    public class SignalsInstaller : MonoInstaller
+    [CreateAssetMenu(fileName = "SignalsInstaller", menuName = "Installers/SignalsInstaller")]
+    public class SignalsInstaller : ScriptableObjectInstaller
     {
         public override void InstallBindings()
         {

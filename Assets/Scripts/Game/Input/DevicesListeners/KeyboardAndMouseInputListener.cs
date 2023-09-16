@@ -11,9 +11,9 @@ namespace Game.Input.DevicesListeners
         private InputActions inputActions;
         private InputDevice device;
 
-        public KeyboardAndMouseInputListener(InputEventsHolder inputEventsHolder)
+        public KeyboardAndMouseInputListener()
         {
-            this.inputEventsHolder = inputEventsHolder;
+            inputEventsHolder = InputMediator.InputEventsHolder;
         }
 
         public void Setup(InputActions inputActions, InputDevice device)

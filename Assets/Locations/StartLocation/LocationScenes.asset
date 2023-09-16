@@ -29,5 +29,43 @@ MonoBehaviour:
     Y: 350.94812
     Z: 982.8244
   locationGameObjects:
-    TransformData: []
-    GameObjectInstances: []
+    TransformData:
+    - id:
+        value: dea20392-39d7-4ecd-bdb7-8614f8cfd66c
+      Position:
+        X: 65.28
+        Y: 21.84
+        Z: 38.14
+      Rotation:
+        X: -0
+        Y: -0.7619101
+        Z: -0
+        W: 0.6476828
+      Scale:
+        X: 1
+        Y: 1
+        Z: 1
+    - id:
+        value: 5626d675-4009-476a-b3e7-d29356fe69fa
+      Position:
+        X: 83.613266
+        Y: 21.55
+        Z: 36.55379
+      Rotation:
+        X: -0
+        Y: -0.7227095
+        Z: -0
+        W: 0.691152
+      Scale:
+        X: 1
+        Y: 1
+        Z: 1
+    GameObjectInstances:
+    - InstanceId:
+        value: dea20392-39d7-4ecd-bdb7-8614f8cfd66c
+      TemplateId:
+        value: ff24bb1b-62ae-4a50-9700-17dd9e425841
+    - InstanceId:
+        value: 5626d675-4009-476a-b3e7-d29356fe69fa
+      TemplateId:
+        value: ff24bb1b-62ae-4a50-9700-17dd9e425841

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Common.Data;
 using Common.GameObjects;
+using Common.ServiceLocator;
 using Game.Loaders;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,23 +9,17 @@ using Zenject;
 
 namespace Game.GameObjectsViews
 {
-    public class GameObjectsPool : IInitializable
+    [CreateAssetMenu(fileName = "GameObjectsPool", menuName = "Services/GameObjectsPool")]
+    public class GameObjectsPool : ScriptableObject, IInitializableService
     {
-        private GameObjectsTemplates templates;
-        private TechnicalData technicalData;
+        [SerializeField] private GameObjectsTemplates templates;
+        [SerializeField] private TechnicalData technicalData;
 
         private readonly Dictionary<Id, GameObjectTemplate> templatesMap = new();
         private readonly Dictionary<Id, Stack<GameObjectView>> pool = new();
         private readonly HashSet<GameObjectView> used = new();
 
         private Transform poolRoot;
-
-        [Inject]
-        private void Construct(GameObjectsTemplates templates, TechnicalData technicalData)
-        {
-            this.templates = templates;
-            this.technicalData = technicalData;
-        }
 
         public void Initialize()
         {
@@ -35,6 +30,11 @@ namespace Game.GameObjectsViews
             }
             
             CreatePoolRoot();
+        }
+        
+        public void Dispose()
+        {
+            ClearAll();
         }
         
         public void OnLocationLoaded()
