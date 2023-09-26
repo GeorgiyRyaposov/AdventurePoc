@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using Game.Gui.MainMenu;
+using Game.Input;
+using UnityEngine;
 
-namespace Game.Gui.MainMenu
+namespace Game.Gui.GameMenu
 {
-    public class MainMenuPresenter
+    public class GameMenuPresenter
     {
         private MainMenuView view;
         
@@ -11,17 +13,23 @@ namespace Game.Gui.MainMenu
             view = mainMenuView;
             
             view.NewGame.onClick.AddListener(NewGameClicked);
+            view.SaveGame.onClick.AddListener(SaveGameClicked);
             view.LoadGame.onClick.AddListener(LoadGameClicked);
             view.Exit.onClick.AddListener(ExitClicked);
-            view.SaveGame.gameObject.SetActive(false);
             
             view.LoadGame.interactable = ServicesMediator.GameStarter.HasSavedGame;
+
+            InputMediator.InputEventsHolder.Paused += OnPaused;
+            
+            Show(false);
         }
+
         public void Detach()
         {
             view = null;
+            InputMediator.InputEventsHolder.Paused -= OnPaused;
         }
-
+        
         private void NewGameClicked()
         {
             ServicesMediator.GameStarter.StartNewGame();
@@ -31,10 +39,25 @@ namespace Game.Gui.MainMenu
         {
             ServicesMediator.GameStarter.LoadGame();
         }
+        
+        private void SaveGameClicked()
+        {
+            ServicesMediator.GameStarter.LoadGame();
+        }
 
         private void ExitClicked()
         {
             Application.Quit();
+        }
+        
+        private void OnPaused()
+        {
+            Show(!view.gameObject.activeSelf);
+        }
+
+        private void Show(bool show)
+        {
+            view.gameObject.SetActive(show);
         }
     }
 }

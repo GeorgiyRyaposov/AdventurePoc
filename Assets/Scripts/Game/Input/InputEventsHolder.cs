@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game.Input
 {
@@ -9,5 +10,12 @@ namespace Game.Input
         public bool Jump;
         public bool Sprint;
         public bool Interact;
+
+        public event Action Paused = () => { };
+
+        public void OnPauseClick()
+        {
+            Paused();
+        }
     }
 }

@@ -58,6 +58,14 @@ namespace Game.Input.DevicesListeners
             InteractInput(context.performed);
         }
 
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                inputEventsHolder.OnPauseClick();
+            }
+        }
+
         public void OnSprint(InputAction.CallbackContext context)
         {
             SprintInput(context.performed);

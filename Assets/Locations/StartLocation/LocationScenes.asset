@@ -16,6 +16,7 @@ MonoBehaviour:
     value: d5f798f9-7f95-4aa1-877b-632da30bd608
   scenes:
   - StartLocation
+  - GameGui
   playerSpawnPosition:
     X: 77.982
     Y: 22.218

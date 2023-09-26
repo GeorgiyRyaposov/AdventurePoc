@@ -1,9 +1,9 @@
-﻿using Common.ServiceLocator;
+﻿using System;
 using UnityEngine;
 
 namespace Game.Gui.MainMenu
 {
-    public class MainMenuController : MonoBehaviour
+    public class MainMenuController : MonoBehaviour, IDisposable
     {
         [SerializeField] private MainMenuView mainMenuView;
         
@@ -17,7 +17,7 @@ namespace Game.Gui.MainMenu
 
         public void Dispose()
         {
-            
+            mainMenuPresenter.Detach();
         }
     }
 }

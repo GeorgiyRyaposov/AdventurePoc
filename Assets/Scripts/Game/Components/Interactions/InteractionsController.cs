@@ -33,7 +33,6 @@ namespace Game.Components.Interactions
         
         private readonly List<GameObjectData> interactionObjects = new();
         private GameObjectData closestInteractionObject;
-        public List<GameObjectData> InteractionObjects => interactionObjects;
 
         public void Initialize()
         {

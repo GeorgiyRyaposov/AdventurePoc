@@ -10,5 +10,8 @@ namespace Game.Loaders
         
         [SerializeField] private string objectsPoolSceneName = "ObjectsPool";
         public string ObjectsPoolSceneName => objectsPoolSceneName;
+        
+        [SerializeField] private string gameGuiSceneName = "GameGui";
+        public string GameGuiSceneName => gameGuiSceneName;
     }
 }
