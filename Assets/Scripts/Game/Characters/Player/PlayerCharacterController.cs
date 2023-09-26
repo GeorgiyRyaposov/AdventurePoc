@@ -1,4 +1,5 @@
-﻿using Common.ServiceLocator;
+﻿using System;
+using Common.ServiceLocator;
 using Game.Data;
 using StarterAssets;
 using UnityEngine;
@@ -23,7 +24,12 @@ namespace Game.Characters.Player
         {
             ServicesMediator.TickableService.Remove(this);
         }
-        
+
+        private void OnDestroy()
+        {
+            Dispose();
+        }
+
         public void SpawnPlayer(Vector3 spawnPoint)
         {
             var thirdPersonController = Instantiate(thirdPersonControllerPrefab, spawnPoint, Quaternion.identity);

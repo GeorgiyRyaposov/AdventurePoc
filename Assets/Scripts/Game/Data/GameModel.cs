@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Common.Components;
 using Common.Data;
 using Game.Components.Transforms;
-using UnityEngine;
 
 namespace Game.Data
 {
-    [System.Serializable]
     public class GameModel
     {
         public Id CurrentLocation;

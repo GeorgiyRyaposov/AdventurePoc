@@ -1,7 +1,9 @@
-﻿using Common.Views;
+﻿using System;
+using Common.Views;
 
 namespace Common.Data
 {
+    [Serializable]
     public struct GameObjectData
     {
         public Id InstanceId;
@@ -11,6 +13,12 @@ namespace Common.Data
         {
             InstanceId = view.InstanceId;
             TemplateId = view.TemplateId;
+        }
+        
+        public GameObjectData(Id instanceId, Id templateId)
+        {
+            InstanceId = instanceId;
+            TemplateId = templateId;
         }
     }
 }

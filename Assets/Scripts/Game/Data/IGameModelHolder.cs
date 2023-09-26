@@ -4,5 +4,6 @@
     {
         void SetModel(GameModel model);
         bool HasModel();
+        SerializableGameModel GetSerializableGameModel();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,29 +9,30 @@ namespace Game.Input.DevicesListeners
     {
         private readonly InputEventsHolder inputEventsHolder;
         
-        private InputActions inputActions;
-        private InputDevice device;
+        private readonly List<InputActions> inputActions = new ();
 
         public KeyboardAndMouseInputListener()
         {
             inputEventsHolder = InputMediator.InputEventsHolder;
         }
 
-        public void Setup(InputActions inputActions, InputDevice device)
+        public void Setup(InputActions input, InputDevice device)
         {
-            this.inputActions = inputActions;
-            this.device = device;
+            inputActions.Add(input);
 
-            inputActions.devices = new UnityEngine.InputSystem.Utilities.ReadOnlyArray<InputDevice>(
-                new InputDevice[] { device, Keyboard.current });
+            input.devices = new UnityEngine.InputSystem.Utilities.ReadOnlyArray<InputDevice>(
+                new InputDevice[] { device });
             
-            inputActions.Player.SetCallbacks(this);
+            input.Player.SetCallbacks(this);
         }
         
 
         public void Dispose()
         {
-            inputActions.Player.RemoveCallbacks(this);
+            foreach (var inputAction in inputActions)
+            {
+                inputAction.Player.RemoveCallbacks(this);
+            }
         }
 
         public string GetControlScheme()

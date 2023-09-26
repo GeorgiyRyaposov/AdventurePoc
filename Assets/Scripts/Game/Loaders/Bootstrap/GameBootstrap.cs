@@ -50,6 +50,7 @@ namespace Game.Loaders.Bootstrap
             serviceLocator.Register(new TickableService(tickableManager));
             serviceLocator.Register(new LocationStarter());
             serviceLocator.Register(new DataController());
+            serviceLocator.Register(new GameDataLoader());
             serviceLocator.Register(new SceneTransitionController());
             serviceLocator.Register(new GameObjectsController());
             serviceLocator.Register(new InputDevicesManager());

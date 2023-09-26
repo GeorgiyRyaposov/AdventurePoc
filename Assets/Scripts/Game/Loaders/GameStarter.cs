@@ -9,7 +9,7 @@ namespace Game.Loaders
     public class GameStarter : ScriptableObject, IInitializableService
     {
         [SerializeField] private LocationsHolder locationsHolder;
-        public bool HasSavedGame;
+        public bool HasSavedGame => ServicesMediator.GameDataLoader.HasSavedGame();
         
         
         public void Initialize()
@@ -26,11 +26,21 @@ namespace Game.Loaders
         {
             
         }
+        
+        public void LoadGame()
+        {
+            var data = ServicesMediator.GameDataLoader.LoadData();
+            var gameModel = data.GameModelWrapper.ToGameModel();
+            StartGameWithModel(gameModel);
+        }
 
         public void StartNewGame()
         {
-            ServicesMediator.GameModelHolder.SetModel(CreateNewGameModel());
-            ServicesMediator.SceneTransitionController.Load(locationsHolder.StartingLocation.Id);
+            var newGameModel = CreateNewGameModel();
+            newGameModel.CurrentLocation = locationsHolder.StartingLocation.Id;
+            newGameModel.PlayerPosition = locationsHolder.StartingLocation.PlayerSpawnPosition;
+            
+            StartGameWithModel(newGameModel);
         }
 
         private GameModel CreateNewGameModel()
@@ -58,9 +68,10 @@ namespace Game.Loaders
             return gameModel;
         }
 
-        public void LoadGame()
+        private static void StartGameWithModel(GameModel gameModel)
         {
-            
+            ServicesMediator.GameModelHolder.SetModel(gameModel);
+            ServicesMediator.SceneTransitionController.Load(gameModel.CurrentLocation);
         }
     }
 }

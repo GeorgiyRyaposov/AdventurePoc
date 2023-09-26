@@ -42,7 +42,7 @@ namespace Game.Gui.GameMenu
         
         private void SaveGameClicked()
         {
-            ServicesMediator.GameStarter.LoadGame();
+            ServicesMediator.GameDataLoader.SaveData();
         }
 
         private void ExitClicked()

@@ -37,7 +37,7 @@ namespace Game.Locations
                 }
             }
 
-            var spawnPoint = locationController.GetSpawnPoint();
+            var spawnPoint = ServicesMediator.DataController.GetPlayerPosition();
             ServicesMediator.PlayerCharacterController.SpawnPlayer(spawnPoint);
 
             Debug.Log($"<color=green>Spawned items: {spawnedCount}</color>");

@@ -16,6 +16,11 @@ namespace Game.Data
         {
             this.model = model;
         }
+
+        public SerializableGameModel GetSerializableGameModel()
+        {
+            return new SerializableGameModel(model);
+        }
         public bool HasModel() => model != null;
 
         public IComponentDataDictionary GetComponentsData(Id controllerId)

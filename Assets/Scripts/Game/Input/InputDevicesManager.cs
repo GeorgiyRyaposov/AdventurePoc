@@ -35,12 +35,12 @@ namespace Game.Input
         {
             foreach (var device in InputSystem.devices)
             {
-                if (string.Equals(device.name, "Mouse", StringComparison.OrdinalIgnoreCase))
-                {
-                    //temp solution
-                    //to fix double pair of mouse and keyboard
-                    continue;
-                }
+                // if (string.Equals(device.name, "Mouse", StringComparison.OrdinalIgnoreCase))
+                // {
+                //     //temp solution
+                //     //to fix double pair of mouse and keyboard
+                //     continue;
+                // }
                 PairDeviceToPlayer(device);
             }
         }

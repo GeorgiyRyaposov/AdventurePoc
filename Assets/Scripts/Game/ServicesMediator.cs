@@ -21,6 +21,7 @@ namespace Game
         public static TickableService TickableService => Get<TickableService>();
         public static IGameModelHolder GameModelHolder => Get<IGameModelHolder>();
         public static IDataController DataController => Get<IDataController>();
+        public static GameDataLoader GameDataLoader => Get<GameDataLoader>();
         
         public static TransformsController TransformsController => Get<TransformsController>();
         public static LocationController LocationController => Get<LocationController>();

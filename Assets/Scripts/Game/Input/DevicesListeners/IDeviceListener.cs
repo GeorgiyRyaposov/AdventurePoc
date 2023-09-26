@@ -4,7 +4,7 @@ namespace Game.Input.DevicesListeners
 {
     public interface IDeviceListener
     {
-        void Setup(InputActions inputActions, InputDevice device);
+        void Setup(InputActions input, InputDevice device);
         string GetControlScheme();
     }
 }
