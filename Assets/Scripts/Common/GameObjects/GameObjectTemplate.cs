@@ -17,6 +17,21 @@ namespace Common.GameObjects
         
         [SerializeField] private List<ComponentTemplate> componentsTemplates;
         public List<ComponentTemplate> ComponentsTemplates => componentsTemplates;
+
+        public bool TryGetComponent<T>(out T component) where T : ComponentTemplate
+        {
+            for (var i = 0; i < componentsTemplates.Count; i++)
+            {
+                if (componentsTemplates[i] is T result)
+                {
+                    component = result;
+                    return true;
+                }
+            }
+
+            component = default;
+            return false;
+        }
         
 #if UNITY_EDITOR
         private void OnValidate()

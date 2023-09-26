@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Common.Data;
+using Common.GameObjects;
 using Common.ServiceLocator;
 using Game.Data;
 using Game.Loaders;
@@ -37,6 +38,11 @@ namespace Game.GameObjectsViews
             spawnedViews.Add(view);
             
             return view;
+        }
+
+        public GameObjectView GetGameObjectView(Id instanceId)
+        {
+            return spawnedViews.Find(x => x.InstanceId == instanceId);
         }
 
         public List<Id> GetGameObjects()

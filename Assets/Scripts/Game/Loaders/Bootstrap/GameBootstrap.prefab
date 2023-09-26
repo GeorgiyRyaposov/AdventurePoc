@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6212ec4e4ce4cf6920b7cc33fabc027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentsHolder: {fileID: 11400000, guid: 93832877484ff6144aee60ae038552ef, type: 2}
+  componentsServicesHolder: {fileID: 11400000, guid: 93832877484ff6144aee60ae038552ef,
+    type: 2}
   servicesHolder: {fileID: 11400000, guid: a4a4f712f4df7f044b027906b29fb4c8, type: 2}
   serviceLocator: {fileID: -8669630934355511197}
 --- !u!114 &-8669630934355511197

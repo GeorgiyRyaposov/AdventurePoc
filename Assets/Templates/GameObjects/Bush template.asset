@@ -17,4 +17,5 @@ MonoBehaviour:
   viewsTemplates:
   - {fileID: 11400000, guid: b3b630d37fa4c6c4dbf54c0764bf8e6a, type: 2}
   - {fileID: 11400000, guid: c68540db3d4dc474fa81fec46c12200b, type: 2}
-  componentsTemplates: []
+  componentsTemplates:
+  - {fileID: 11400000, guid: e273bbfb31ee5f84aae2440ae24db296, type: 2}

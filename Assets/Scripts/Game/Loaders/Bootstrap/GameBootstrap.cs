@@ -14,7 +14,7 @@ namespace Game.Loaders.Bootstrap
 {
     public class GameBootstrap : MonoBehaviour, IInitializable
     {
-        [SerializeField] private ScriptablesHolder componentsHolder;
+        [SerializeField] private ScriptablesHolder componentsServicesHolder;
         [SerializeField] private ScriptablesHolder servicesHolder;
         [SerializeField] private MonoServiceLocator serviceLocator;
 
@@ -59,7 +59,7 @@ namespace Game.Loaders.Bootstrap
                 RegisterService(scriptableService);
             }
 
-            foreach (var scriptableService in componentsHolder.Values)
+            foreach (var scriptableService in componentsServicesHolder.Values)
             {
                 RegisterService(scriptableService);
             }

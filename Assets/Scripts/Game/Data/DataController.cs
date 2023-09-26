@@ -58,5 +58,15 @@ namespace Game.Data
         {
             model.Transforms[objectId] = data;
         }
+
+        public void SetPlayerPosition(Vector3 position)
+        {
+            model.PlayerPosition = position;
+        }
+
+        public Vector3 GetPlayerPosition()
+        {
+            return model.PlayerPosition;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Common.Components;
 using Common.Data;
 using Game.Components.Transforms;
+using UnityEngine;
 
 namespace Game.Data
 {
@@ -14,5 +15,6 @@ namespace Game.Data
         public Dictionary<Id, TransformData> Transforms = new ();
         
         public Dictionary<Id, Id> GameObjectsInstancesToTemplatesMap = new ();
+        public SerializableVector3 PlayerPosition;
     }
 }

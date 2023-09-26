@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Common.Components;
 using Common.Data;
 using Game.Components.Transforms;
+using UnityEngine;
 
 namespace Game.Data
 {
@@ -15,5 +16,9 @@ namespace Game.Data
         Dictionary<Id, Id> GetGameObjectsToTemplatesMap();
         TransformData GetTransform(Id objectId);
         void SetTransform(Id objectId, TransformData data);
+        
+        //TODO: separate interface?
+        void SetPlayerPosition(Vector3 position);
+        Vector3 GetPlayerPosition();
     }
 }

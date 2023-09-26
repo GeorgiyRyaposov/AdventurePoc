@@ -8,5 +8,6 @@ namespace Game.Input
         public Vector2 Look;
         public bool Jump;
         public bool Sprint;
+        public bool Interact;
     }
 }

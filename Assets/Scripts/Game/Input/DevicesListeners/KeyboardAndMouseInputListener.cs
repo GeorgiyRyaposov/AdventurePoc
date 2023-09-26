@@ -53,6 +53,11 @@ namespace Game.Input.DevicesListeners
             JumpInput(context.performed);
         }
 
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+            InteractInput(context.performed);
+        }
+
         public void OnSprint(InputAction.CallbackContext context)
         {
             SprintInput(context.performed);
@@ -76,6 +81,11 @@ namespace Game.Input.DevicesListeners
         private void SprintInput(bool newSprintState)
         {
             inputEventsHolder.Sprint = newSprintState;
+        }
+        
+        private void InteractInput(bool interact)
+        {
+            inputEventsHolder.Interact = interact;
         }
     }
 }
